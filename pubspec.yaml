@@ -1,0 +1,42 @@
+name: beauty_of_space
+description: A new Flutter project.
+
+# Prevent accidental publishing to pub.dev.
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  envify: ^2.0.2
+  retrofit: ^3.0.1+1
+  dio: ^4.0.4
+  get: ^4.6.1
+  date_format: ^2.0.5
+  syncfusion_flutter_datepicker: ^19.4.56
+  url_launcher: ^6.0.20
+  share_plus: ^4.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^1.0.0
+  envify_generator: ^2.0.2
+  build_runner: ^2.1.8
+  json_serializable: ^6.1.5
+  retrofit_generator: ^3.0.1+1
+  json_annotation: ^4.4.0
+
+flutter:
+  uses-material-design: true
+
+
+  assets:
+    # Add assets from the images directory to the application.
+    - assets/images/

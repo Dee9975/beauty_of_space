@@ -1,30 +1,11 @@
-# beauty_of_space
+# Beauty Of Space
 
-A new Flutter project.
+An app that displays some cool photos from NASA's Astronomy Picture Of the Day programme.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application that follows the
-[simple app state management
-tutorial](https://flutter.dev/docs/development/data-and-backend/state-mgmt/simple).
+To use the app you must first create a `.env` file that contains a `KEY`
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[Get your own api key](https://api.nasa.gov/).
 
-## Assets
-
-The `assets` directory houses images, fonts, and any other files you want to
-include with your application.
-
-The `assets/images` directory contains [resolution-aware
-images](https://flutter.dev/docs/development/ui/assets-and-images#resolution-aware).
-
-## Localization
-
-This project generates localized messages based on arb files found in
-the `lib/src/localization` directory.
-
-To support additional languages, please visit the tutorial on
-[Internationalizing Flutter
-apps](https://flutter.dev/docs/development/accessibility-and-localization/internationalization)
+When you have the key, in your terminal run: `flutter pub run build_runner build`

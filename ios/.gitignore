@@ -27,6 +27,7 @@ ServiceDefinitions.json
 Runner/GeneratedPluginRegistrant.*
 
 *.g.dart
+.env
 
 # Exceptions to above rules.
 !default.mode1v3

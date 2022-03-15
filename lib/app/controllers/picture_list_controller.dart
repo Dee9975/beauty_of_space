@@ -1,3 +1,4 @@
+import 'package:beauty_of_space/domain/exceptions/server_exception.dart';
 import 'package:beauty_of_space/domain/models/apod/picture.dart';
 import 'package:beauty_of_space/data/repositories/apod_repository.dart';
 import 'package:beauty_of_space/domain/services/nasa_service/nasa_service.dart';
@@ -31,30 +32,49 @@ class PictureListController extends GetxController {
         Dio(),
       ),
     );
-    await getPicture();
+    await getPictures();
     super.onInit();
   }
 
-  Future<void> getPicture() async {
-    _loading.value = true;
-    _pictures.value = await _repo.getApod();
-    _loading.value = false;
+  Future<void> getPictures() async {
+    try {
+      _loading.value = true;
+      _pictures.value = await _repo.getApod(
+        startDate: formatDate(
+          _dateRange.value.startDate!,
+          [yyyy, "-", mm, "-", dd],
+        ),
+        endDate: formatDate(
+          _dateRange.value.endDate!,
+          [yyyy, "-", mm, "-", dd],
+        ),
+      );
+    } on ServerException catch (e) {
+      Get.snackbar("Error!", e.message);
+    } finally {
+      _loading.value = false;
+    }
   }
 
   Future<void> getPicsFromRange(DateTime startDate, DateTime endDate) async {
     _dateRange.value = PickerDateRange(startDate, endDate);
     Get.back();
-    _loading.value = true;
-    final s = formatDate(
-      startDate,
-      [yyyy, "-", mm, "-", dd],
-    );
+    try {
+      _loading.value = true;
+      final s = formatDate(
+        startDate,
+        [yyyy, "-", mm, "-", dd],
+      );
 
-    final e = formatDate(
-      endDate,
-      [yyyy, "-", mm, "-", dd],
-    );
-    _pictures.value = await _repo.getApod(startDate: s, endDate: e);
-    _loading.value = false;
+      final e = formatDate(
+        endDate,
+        [yyyy, "-", mm, "-", dd],
+      );
+      _pictures.value = await _repo.getApod(startDate: s, endDate: e);
+    } on ServerException catch (e) {
+      Get.snackbar("Error!", e.message);
+    } finally {
+      _loading.value = false;
+    }
   }
 }

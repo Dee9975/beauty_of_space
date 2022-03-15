@@ -21,6 +21,7 @@ dependencies:
   syncfusion_flutter_datepicker: ^19.4.56
   url_launcher: ^6.0.20
   share_plus: ^4.0.1
+  mockito: ^5.1.0
 
 dev_dependencies:
   flutter_test:

@@ -1,8 +1,8 @@
+import 'package:beauty_of_space/domain/exceptions/server_exception.dart';
 import 'package:beauty_of_space/domain/models/apod/picture.dart';
 import 'package:beauty_of_space/domain/repositories/base_apod_repository.dart';
 import 'package:beauty_of_space/domain/services/nasa_service/nasa_service.dart';
 import 'package:beauty_of_space/env/env.dart';
-import 'package:date_format/date_format.dart';
 import 'package:dio/dio.dart';
 
 class ApodRepository implements BaseApodRepository {
@@ -12,28 +12,15 @@ class ApodRepository implements BaseApodRepository {
 
   @override
   Future<List<Picture>> getApod({
-    String? startDate,
-    String? endDate,
+    required String startDate,
+    required String endDate,
   }) async {
     try {
-      return service.getApod(
-        Env.key,
-        startDate: startDate ??
-            formatDate(
-              DateTime.now().subtract(
-                const Duration(days: 30),
-              ),
-              [yyyy, "-", mm, "-", dd],
-            ),
-        endDate: endDate ??
-            formatDate(
-              DateTime.now(),
-              [yyyy, "-", mm, "-", dd],
-            ),
-      );
-    } on DioError catch (e) {
-      print(e.requestOptions.queryParameters);
-      throw Exception();
+      return service.getApod(Env.key, startDate: startDate, endDate: endDate);
+    } on DioError catch (_) {
+      throw ServerException("An error occured while retrieving the pictures!");
+    } catch (_) {
+      throw ServerException("An unknown error occured");
     }
   }
 }

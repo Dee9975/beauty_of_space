@@ -12,6 +12,6 @@ KEY=[YOUR_KEY_HERE]
 
 [Get your own api key](https://api.nasa.gov/).
 
-When you have the key, in your terminal run: `flutter pub run build_runner build`
+When you have the key, in your terminal run: `flutter pub run build_runner build --delete-conflicting-outputs`
 
 Then all that's left is to run `flutter run` and enjoy some beautiful space photography
